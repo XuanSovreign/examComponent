@@ -41,5 +41,6 @@ dependencies {
     api rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
     api rootProject.ext.dependencies["eventbus"]
     api rootProject.ext.dependencies["logging-interceptor"]
+    debugApi rootProject.ext.dependencies["leakcanary"]
     annotationProcessor rootProject.ext.dependencies["router-compiler"]
 }

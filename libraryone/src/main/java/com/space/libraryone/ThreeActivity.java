@@ -1,8 +1,10 @@
 package com.space.libraryone;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.LruCache;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.space.commonmodule.utils.ToastUtil;
@@ -33,5 +35,13 @@ public class ThreeActivity extends AppCompatActivity {
         if (!userMessages.isEmpty()) {
             ToastUtil.showTip(this,"=========="+userMessages.size());
         }
+        long memory = Runtime.getRuntime().maxMemory() / 1024;
+        long maxCache = memory / 8;
+        LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>((int) maxCache){
+            @Override
+            protected int sizeOf(String key, Bitmap value) {
+                return value.getByteCount()/1024;
+            }
+        };
     }
 }
